@@ -48,9 +48,10 @@ public class Exemplo1 {
 				}
 				break;
 			default:
-				System.out.println("Escolha um Sexo válido");
+				System.out.println("Escolha um Sexo válido.");
 				break;
 			}
+			System.out.println();
 			System.out.println();
 		}
 
