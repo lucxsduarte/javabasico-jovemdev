@@ -16,8 +16,7 @@ public class Principal {
 			String nome = JOptionPane.showInputDialog("Digite seu nome");
 			Double peso = Double.parseDouble(JOptionPane.showInputDialog("Digite seu peso"));
 			Double altura = Double.parseDouble(JOptionPane.showInputDialog("Digite sua altura"));
-			int sexo = Integer
-					.parseInt(JOptionPane.showInputDialog("Escolha seu sexo:\n 1 - MASCULINO\n 2 - FEMININO"));
+			int sexo = Integer.parseInt(JOptionPane.showInputDialog("Escolha seu sexo:\n 1 - MASCULINO\n 2 - FEMININO"));
 
 			Pessoa pessoa = new Pessoa(nome, peso, altura, sexo);
 			lista.add(pessoa);
