@@ -1,4 +1,4 @@
-package primeira_aula;
+package primeira;
 
 import javax.swing.JOptionPane;
 
