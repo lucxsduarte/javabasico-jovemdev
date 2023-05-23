@@ -1,4 +1,4 @@
-package primeira;
+package primeira_aula;
 
 import java.util.ArrayList;
 
