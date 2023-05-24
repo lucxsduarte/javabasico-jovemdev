@@ -1,12 +1,26 @@
 package segunda_aula.exercicio_carro;
 
+
 import javax.swing.JOptionPane;
 
-public class Carro {
+public class Carro implements Comparable<Carro>{
 
 	String marca;
 	int ano;
 	String cor;
+	
+	public String getMarca() {
+		return marca;
+	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
 	
 	enum corEnum {
 		VERMELHO("Vermelho"),
@@ -26,7 +40,6 @@ public class Carro {
 
 		
 	}
-	
 	
 	void cadastro() {
 		marca = JOptionPane.showInputDialog("Digite a marca");
@@ -60,9 +73,11 @@ public class Carro {
 		int anoCarro = ano;
 		String marcaCarro = marca;
 		
-		
-		return marcaCarro + " " + anoCarro + " " + cor;
+		return marcaCarro.toUpperCase() + " " + anoCarro + " " + cor;
 	}
 	
+	public int compareTo(Carro outroCarro) {
+		return this.marca.compareToIgnoreCase(outroCarro.getMarca());
+	}
 	
 }
