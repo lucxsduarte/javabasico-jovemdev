@@ -3,11 +3,16 @@ package segunda_aula.exercicio_carro;
 
 import javax.swing.JOptionPane;
 
-public class Carro implements Comparable<Carro>{
+import lombok.Getter;
+import lombok.Setter;
 
-	String marca;
-	int ano;
-	String cor;
+@Getter
+@Setter
+public class Carro {
+
+	private String marca;
+	private int ano;
+	private String cor;
 	
 	public String getMarca() {
 		return marca;
@@ -30,7 +35,7 @@ public class Carro implements Comparable<Carro>{
 
 		final String corVeiculo;
 		
-		corEnum(String corVeiculo){
+		private corEnum(String corVeiculo){
 			this.corVeiculo = corVeiculo;
 		}
 		
@@ -76,8 +81,5 @@ public class Carro implements Comparable<Carro>{
 		return marcaCarro.toUpperCase() + " " + anoCarro + " " + cor;
 	}
 	
-	public int compareTo(Carro outroCarro) {
-		return this.marca.compareToIgnoreCase(outroCarro.getMarca());
-	}
-	
+
 }

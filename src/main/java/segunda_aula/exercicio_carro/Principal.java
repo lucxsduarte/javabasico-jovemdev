@@ -16,7 +16,6 @@ public class Principal {
 				+ "3 - Listar carros por marca\n"
 				+ "4 - Listar carros por cor\n"
 				+ "5 - Sair";
-		int contador = 0;
 		int controle = 0;
 		
 		do {
@@ -26,33 +25,29 @@ public class Principal {
 				c.cadastro();
 				carros.add(c);
 				System.out.println("Carro cadastado com sucesso!");
-				contador++;
 			}
 			if (controle == 2) {
 				int anoInicial = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano inicial da busca"));
 				int anoFinal = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano final da busca"));
-				int verificaAno = 0;
-				String resultado = "";
-				Collections.sort(carros);
+				
+				String verificaAno = "";
 				
 				for (Carro c : carros) {
-					verificaAno = c.ano;
 					
-					if (c.ano >= anoInicial && c.ano <= anoFinal) {
-						System.out.println(c.toString());
-						
+					if (c.getAno() >= anoInicial && c.getAno() <= anoFinal) {
+						verificaAno += c.toString();
 					}
+					
 				}
 				
 				
 			}
 			if (controle == 3) {
 				String resultadoMarca = "";
-				Collections.sort(carros);
 				
 				
 				for (Carro c : carros) {
-					resultadoMarca = c.marca;
+					resultadoMarca = c.getMarca();
 					
 		            System.out.println(c.toString());
 		        }
@@ -63,9 +58,9 @@ public class Principal {
 				String resultadoCor = "";
 				
 				for (Carro c : carros) {
-					resultadoCor = c.cor;
+					resultadoCor = c.getCor();
 					
-					if (c.cor.equals(c.getCor()))	
+					if (c.getCor().equals(c.getCor()))	
 					
 					System.out.println(c.toString());
 				}
