@@ -1,23 +1,19 @@
 package segunda_aula.exercicio_carro;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Principal {
 
-	static ArrayList<Carro> carros = new ArrayList<Carro>();
-	
+	static List<Carro> carros = new ArrayList<Carro>();
+
 	public static void main(String[] args) {
-		
-		String menu = "1 - Cadastrar Carro\n"
-				+ "2 - Listar carros por periodo de fabricação\n"
-				+ "3 - Listar carros por marca\n"
-				+ "4 - Listar carros por cor\n"
-				+ "5 - Sair";
+
+		String menu = "1 - Cadastrar Carro\n" + "2 - Listar carros por periodo de fabricação\n"
+				+ "3 - Listar carros por marca\n" + "4 - Listar carros por cor\n" + "5 - Sair";
 		int controle = 0;
-		
+
 		do {
 			controle = Integer.parseInt(JOptionPane.showInputDialog(menu));
 			if (controle == 1) {
@@ -29,45 +25,54 @@ public class Principal {
 			if (controle == 2) {
 				int anoInicial = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano inicial da busca"));
 				int anoFinal = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano final da busca"));
-				
-				String verificaAno = "";
-				
+				int contador = 0;
+				String ret = "";
 				for (Carro c : carros) {
-					
 					if (c.getAno() >= anoInicial && c.getAno() <= anoFinal) {
-						verificaAno += c.toString();
+						contador++;
+						ret += c.toString() + "\n";
 					}
-					
+
 				}
-				
-				
+				System.out.println(ret + "\nequivale a " + calculaPorcentagem(carros, contador) + "% dos carros \n"
+						+ "______________\n");
 			}
 			if (controle == 3) {
-				String resultadoMarca = "";
-				
-				
+				String resultadoMarca = JOptionPane.showInputDialog("Digite a marca");
+				int contador = 0;
+				String ret = "";
 				for (Carro c : carros) {
-					resultadoMarca = c.getMarca();
-					
-		            System.out.println(c.toString());
-		        }
-				
+					if (resultadoMarca.equalsIgnoreCase(c.getMarca())) {
+						contador++;
+						ret += c.toString() + "\n";
+					}
+
+				}
+				System.out.println(ret + "\nequivale a " + calculaPorcentagem(carros, contador) + "% dos carros \n"
+						+ "______________\n");
 			}
 			if (controle == 4) {
-				
-				String resultadoCor = "";
-				
+				String resultadoCor = JOptionPane.showInputDialog("Digite a cor");
+				int contador = 0;
+				String ret = "";
 				for (Carro c : carros) {
-					resultadoCor = c.getCor();
-					
-					if (c.getCor().equals(c.getCor()))	
-					
-					System.out.println(c.toString());
+
+					if (resultadoCor.equalsIgnoreCase(c.getCor())) {
+						contador++;
+						ret += c.toString() + "\n";
+					}
+
 				}
-				
+				System.out.println(ret + "\nequivale a " + calculaPorcentagem(carros, contador) + "% dos carros \n"
+						+ "______________\n");
 			}
-			
-		}while(controle != 5);
+
+		} while (controle != 5);
 	}
-	
+
+	public static double calculaPorcentagem(List<Carro> carros, int contador) {
+
+		return (double) contador / (double) (carros.size()) * 100;
+	}
+
 }
