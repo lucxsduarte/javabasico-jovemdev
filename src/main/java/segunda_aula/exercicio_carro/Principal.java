@@ -2,7 +2,6 @@ package segunda_aula.exercicio_carro;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import javax.swing.JOptionPane;
 
@@ -76,19 +75,4 @@ public class Principal {
 		}while(controle != 5);
 	}
 	
-	public static ArrayList<Carro> listaCarrosPorPeriodo(ArrayList<Carro> carros, int anoInicial, int anoFinal){
-		
-		
-		ArrayList<Carro> carrosPorPeriodo = new ArrayList<Carro>();
-		
-		for(Carro c : carros) {
-			if( c.getAno() >= anoInicial && c.getAno() <= anoFinal) {
-				carrosPorPeriodo.add(c);
-			}
-		}
-		
-		return carrosPorPeriodo;
-	}
-
-
 }
