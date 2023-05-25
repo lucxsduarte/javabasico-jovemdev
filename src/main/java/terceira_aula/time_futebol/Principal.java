@@ -3,6 +3,10 @@ package terceira_aula.time_futebol;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+
 public class Principal {
 
 	public static void main(String[] args) {
@@ -14,14 +18,16 @@ public class Principal {
 			controle = Util.escolheOpcao();
 			switch (controle) {
 			case 1:
-				Time t = new Time();
-				t.cadastrarTime();
-				campeonato.add(t);
-				System.out.println("Time cadastrado com sucesso!");
+				Util.cadastraTime(campeonato);
 				break;
 
 			case 2:
-				System.out.println(Util.listaJogadores(campeonato, getJogadores()));
+				String resultado = "";
+				for( Time time : campeonato) {
+					resultado += time.listarJogadores();
+					
+				}
+				System.out.println(resultado);
 				break;
 			case 3:
 				

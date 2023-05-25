@@ -1,14 +1,15 @@
 package terceira_aula.time_futebol;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.List;
 
+import javax.swing.JOptionPane;
 
 public class Time {
 
 	private String nomeTime;
 	private int qtJogadores;
-	public ArrayList<Jogador> jogadores;
+	private ArrayList<Jogador> jogadores;
 
 	public String getNomeTime() {
 		return nomeTime;
@@ -17,29 +18,55 @@ public class Time {
 	public int getQtJogadores() {
 		return qtJogadores;
 	}
-	
+
 	public ArrayList<Jogador> getJogadores() {
 		return jogadores;
 	}
 
-
 	void cadastrarTime() {
 		jogadores = new ArrayList<Jogador>();
 		nomeTime = JOptionPane.showInputDialog("Nome Time");
-		qtJogadores = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de jogadores"));
-		
-		Jogador j = new Jogador();
+		do {
+			qtJogadores = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de jogadores"));
+		}while(qtJogadores < 1);
 		
 		for (int i = 0; i < qtJogadores; i++) {
+			Jogador j = new Jogador();
 			j.cadastrarJogador();
 			jogadores.add(j);
-			
 
 		}
-			
 
 	}
 
+	public String listarJogadores() {
+		
+		String escolherTime = JOptionPane.showInputDialog("Digite o nome do time");
+		String ret = "";
+		
+		if( getNomeTime().equalsIgnoreCase(escolherTime)) {
+			for (Jogador j : jogadores) {
+				
+				ret += j.toString();
+			}
+		}
+		return ret;
+	}
+
+	public Jogador verificaArtilheiro() {
+		Jogador artilheiro = jogadores.get(0);
+		
+		for (Jogador jogador : jogadores) {
+			if (jogador.getGolsNoCampeonato() > artilheiro.getGolsNoCampeonato()) {
+				artilheiro = jogador;
+			}
+		}
+		return artilheiro;
+	}
+	
+	public int verificaGols()	{
+		int gols = 0;
+	}
 	
 
 }

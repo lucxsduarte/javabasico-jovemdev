@@ -3,13 +3,15 @@ package terceira_aula.time_futebol;
 
 import javax.swing.JOptionPane;
 
-public class Jogador {
-	String nome;
-	int numero;
-	int golsNoCampeonato;
+import lombok.Getter;
 
+@Getter
+public class Jogador {
+	private String nome;
+	private int numero;
+	private int golsNoCampeonato;
 	
-	void cadastrarJogador() {
+	public void cadastrarJogador() {
 
 		nome = JOptionPane.showInputDialog("Nome Jogador");
 		numero = Integer.parseInt(JOptionPane.showInputDialog("Número do Jogador"));
@@ -17,9 +19,13 @@ public class Jogador {
 
 	}
 	
+	@Override
 	public String toString() {
-
-		return "Nome: " + nome + " Numero: " + numero + "\n";
+		String nomeJogador = nome;
+		int numeroGols = numero;
+		int gols = golsNoCampeonato;
+		
+		return "Nome: " + nomeJogador + " Numero: " + numeroGols + " Gols: " + gols + "\n";
 
 	}
 
