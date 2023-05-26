@@ -15,14 +15,50 @@ public  class Util {
 		
 		return Integer.parseInt(JOptionPane.showInputDialog(menu));
 	}
-	public static void cadastraTime(List<Time> times) {
+	public static void cadastraTime(List<Time> campeonato) {
 		Time t = new Time();
 		t.cadastrarTime();
-		times.add(t);
+		campeonato.add(t);
 		System.out.println("Time cadastrado com sucesso!");
 		
 	}
 	
+	public static Time escolheTime(List<Time> campeonato) {
+		String menu = "Escolhe um time\n";
+		int pos = 1;
+		for (Time t : campeonato) {
+			menu += pos + " - " + t.getNomeTime() + "\n";
+			pos++;
+		}
+		int operacao = Integer.parseInt(JOptionPane.showInputDialog(menu));
+		return campeonato.get(operacao-1);
+		
+	}
 	
+	public static String artilheiroCampeonato(List<Time> campeonato) {
+		Jogador artilheiro = new Jogador();
+		for (Time t : campeonato) {
+			if(t.verificaArtilheiro().getGolsNoCampeonato() > artilheiro.getGolsNoCampeonato()) {
+				artilheiro = t.verificaArtilheiro();
+			}
+		}
+		return artilheiro.toString();
+	}
+	
+	public static String listaJogadores(List<Time> campeonato) {
+		Time t = escolheTime(campeonato);
+		return t.listarJogadores();
+		
+	}
+	
+	public static String timeMaisGols(List<Time> campeonato) {
+		Time timeGols = new Time();
+		for (Time t : campeonato) {
+			if(t.getGols() > timeGols.getGols()) {
+				timeGols = t;
+			}
+		}
+		return timeGols.getNomeTime();
+	}
 	
 }

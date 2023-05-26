@@ -21,27 +21,8 @@ public class Jogador {
 	
 	@Override
 	public String toString() {
-		String nomeJogador = nome;
-		int numeroGols = numero;
-		int gols = golsNoCampeonato;
-		
-		return "Nome: " + nomeJogador + " Numero: " + numeroGols + " Gols: " + gols + "\n";
+		return "Nome: " + nome.toUpperCase() + " Numero: " + numero + " Gols: " + golsNoCampeonato + "\n";
 
-	}
-
-
-	public  String getNome() {
-		return nome;
-	}
-
-
-	public int getNumero() {
-		return numero;
-	}
-
-
-	public int getGolsNoCampeonato() {
-		return golsNoCampeonato;
 	}
 
 

@@ -3,6 +3,8 @@ package terceira_aula.time_futebol;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,29 +24,21 @@ public class Principal {
 				break;
 
 			case 2:
-				String resultado = "";
-				for( Time time : campeonato) {
-					resultado += time.listarJogadores();
-					
-				}
-				System.out.println(resultado);
+				JOptionPane.showMessageDialog(null, Util.listaJogadores(campeonato));
 				break;
 			case 3:
-				
-				
+				JOptionPane.showMessageDialog(null, Util.artilheiroCampeonato(campeonato));
 				break;
 			case 4:
-				
-				
+				JOptionPane.showMessageDialog(null, Util.timeMaisGols(campeonato));
 				break;
 			case 5:
-				System.out.println("Você saiu do menu");
+				JOptionPane.showMessageDialog(null, "Você saiu do menu");
 				break;
 			default:
-				System.out.println("Escolha uma opção válida");
+				JOptionPane.showMessageDialog(null, "Escolha uma opção válida");
 				break;
 			}
-			
 			
 		}while (controle != 5);
 		

@@ -1,55 +1,41 @@
 package terceira_aula.time_futebol;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import lombok.Getter;
+
+@Getter
 public class Time {
 
 	private String nomeTime;
-	private int qtJogadores;
 	private ArrayList<Jogador> jogadores;
 
-	public String getNomeTime() {
-		return nomeTime;
-	}
-
-	public int getQtJogadores() {
-		return qtJogadores;
-	}
-
-	public ArrayList<Jogador> getJogadores() {
-		return jogadores;
-	}
 
 	void cadastrarTime() {
 		jogadores = new ArrayList<Jogador>();
 		nomeTime = JOptionPane.showInputDialog("Nome Time");
-		do {
-			qtJogadores = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de jogadores"));
-		}while(qtJogadores < 1);
+		String controle = "";
 		
-		for (int i = 0; i < qtJogadores; i++) {
+		do {
+			
 			Jogador j = new Jogador();
 			j.cadastrarJogador();
 			jogadores.add(j);
-
-		}
+			controle = JOptionPane.showInputDialog("Cadastrar outro jogador? ( S / N )");
+		}while(controle.equalsIgnoreCase("S"));
 
 	}
 
 	public String listarJogadores() {
 		
-		String escolherTime = JOptionPane.showInputDialog("Digite o nome do time");
-		String ret = "";
+		String ret = "Jogadores do time: " + nomeTime.toUpperCase() + "\n";
 		
-		if( getNomeTime().equalsIgnoreCase(escolherTime)) {
-			for (Jogador j : jogadores) {
-				
-				ret += j.toString();
-			}
+		for (Jogador j : jogadores) {
+			ret += j;
 		}
+		
 		return ret;
 	}
 
@@ -64,7 +50,13 @@ public class Time {
 		return artilheiro;
 	}
 	
-	
+	public int getGols() {
+		int golsDoTime = 0;
+		for (Jogador j : jogadores) {
+			golsDoTime += j.getGolsNoCampeonato();
+		}
+		return golsDoTime;
+	}
 	
 
 }
