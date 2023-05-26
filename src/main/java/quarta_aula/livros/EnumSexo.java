@@ -1,4 +1,4 @@
-package quarta_aula.livors;
+package quarta_aula.livros;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

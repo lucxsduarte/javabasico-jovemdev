@@ -64,9 +64,7 @@ public class Time {
 		return artilheiro;
 	}
 	
-	public int verificaGols()	{
-		int gols = 0;
-	}
+	
 	
 
 }
