@@ -5,46 +5,51 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * @author LUCAS DUARTE
+ *
+ */
+
 public class Principal {
 
 	public static void main(String[] args) {
 		List<Autor> todosAutores = new ArrayList<Autor>();
 		List<Livro> todosLivros = new ArrayList<Livro>();
-		
+
 		int controle = 0;
 		do {
 			controle = Util.escolheOpcao();
-			switch(controle) {
-			case 1: 
+			switch (controle) {
+			case 1:
 				Util.cadastraAutor(todosAutores);
 				break;
 			case 2:
 				Util.cadastraLivro(todosLivros, todosAutores);
 				break;
 			case 3:
-				System.out.println(Util.listaLivrosEAutores(todosLivros));   
+				JOptionPane.showMessageDialog(null, Util.listaLivrosEAutores(todosLivros));
 				break;
 			case 4:
-				System.out.println(Util.listarLivrosPorAutor(todosLivros));
+				JOptionPane.showMessageDialog(null, Util.listarLivrosPorAutor(todosLivros, todosAutores));
 				break;
 			case 5:
-				System.out.println(Util.listarLivrosPorValor(todosLivros));
+				JOptionPane.showMessageDialog(null, Util.listarLivrosPorValor(todosLivros));
 				break;
 			case 6:
-				System.out.println(Util.listarLivrosComCrianca(todosLivros));
+				JOptionPane.showMessageDialog(null, Util.listarLivrosComCrianca(todosLivros, todosAutores));
 				break;
 			case 7:
-				System.out.println(Util.listarLivrosPorSexo(todosLivros));
+				JOptionPane.showMessageDialog(null, Util.listarLivrosPorSexo(todosLivros));
 				break;
 			case 8:
-				System.out.println("Você saiu do programa!");
+				JOptionPane.showMessageDialog(null, "Você saiu do programa!");
 				break;
 			default:
-				System.out.println("opcção inválido");
-				Util.escolheOpcao();
+				JOptionPane.showMessageDialog(null, "Opção inválida!");
 			}
-			
-		}while(controle != 8);
+
+		} while (controle != 8);
 	}
 
 }
