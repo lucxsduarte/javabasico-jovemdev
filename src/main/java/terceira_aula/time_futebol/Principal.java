@@ -14,7 +14,6 @@ public class Principal {
 	public static void main(String[] args) {
 		List<Time> campeonato = new ArrayList<Time>();
 		int controle = 0;
-		
 		do {
 			
 			controle = Util.escolheOpcao();
@@ -22,7 +21,6 @@ public class Principal {
 			case 1:
 				Util.cadastraTime(campeonato);
 				break;
-
 			case 2:
 				JOptionPane.showMessageDialog(null, Util.listaJogadores(campeonato));
 				break;
