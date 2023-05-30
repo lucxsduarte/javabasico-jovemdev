@@ -15,5 +15,5 @@ public class Disciplinas {
 
 	private String nomeDisciplina;
 	private int cargaHoraria;
-	private List<Professor> professorLeciona = new ArrayList<Professor>();
+	private Professor professor;
 }
