@@ -11,6 +11,7 @@ public class Professor {
 
 	private String nome;
 	private EnumFormacao formação;
+//	private int id;
 	
 	
 }

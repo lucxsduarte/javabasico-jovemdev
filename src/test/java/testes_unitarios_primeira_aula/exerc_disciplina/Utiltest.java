@@ -2,6 +2,7 @@ package testes_unitarios_primeira_aula.exerc_disciplina;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,9 +23,9 @@ public class Utiltest {
 		bd.add(p2);
 		bd.add(p3);
 		
-		Alunos a1 = new Alunos("Aluno 1", 5, 7, 9);
-		Alunos a2 = new Alunos("Aluno 2", 9, 4, 8);
-		Alunos a3 = new Alunos("Aluno 3", 6, 5, 3);
+		Alunos a1 = new Alunos("Aluno 1");
+		Alunos a2 = new Alunos("Aluno 2");
+		Alunos a3 = new Alunos("Aluno 3");
 		bd.add(a1);
 		bd.add(a2);
 		bd.add(a3);
@@ -45,7 +46,7 @@ public class Utiltest {
 		List<Alunos> alunos = bd.listAllAlunos();
 		assertEquals(3, alunos.size());
 		assertEquals("Aluno 1", alunos.get(0).getNome());
-		alunos.add(new Alunos("Aluno 4", 5, 8, 10));
+		alunos.add(new Alunos("Aluno 4"));
 		alunos = bd.listAllAlunos();
 		assertEquals(4, alunos.size());
 		assertEquals("Aluno 4", alunos.get(3).getNome());
@@ -75,13 +76,23 @@ public class Utiltest {
 		assertEquals(45, disciplinas.get(3).getCargaHoraria());
 	}
 	
-	@Test
-	@DisplayName("Teste Escolher matéria")
-	void testEscolherMateria(Alunos aluno) {
-		List<Disciplinas> disciplinas = bd.listAllDisciplinas();
-		List<Disciplinas> resultado = bd.escolherDisciplina(aluno);
-		assertEquals(disciplinas, resultado);
-		
 	
+	@Test
+	@DisplayName("Teste adiciona disciplina")
+	void testAdicionaDisciplina() {
+		List<Alunos> alunos = bd.listAllAlunos();
+		List<Disciplinas> disciplinas = bd.listAllDisciplinas();
+		List<Professor> professores = bd.listAllProfessores();
+		Professor p = new Professor("Prof 4", EnumFormacao.GRADUAÇÃO);
+		Alunos a = new Alunos();
+		Disciplinas d = new Disciplinas("História", 40, p);
+		a.adicionaDisciplina(d);
+	}
+	
+	@Test
+	@DisplayName("Lista disciplinas por professor")
+	void testListaPorProfessores() {
+		List<Disciplinas> disciplinas = bd.listarPorProfessor(EnumFormacao.PÓSGRADUAÇÃO);
+		assertEquals(1, disciplinas.size());
 	}
 }

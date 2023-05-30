@@ -44,11 +44,18 @@ public class Util {
 		listaDisciplinas.clear();
 	}
 	
-	public List<Disciplinas> escolherDisciplina(Alunos aluno) {
+	
+	public List<Alunos> adicionaDisciplina(Alunos aluno, Disciplinas disciplina) {
+		aluno.adicionaDisciplina(disciplina);
+		return listaAlunos;
+	}
+	
+	public List<Disciplinas> listarPorProfessor(EnumFormacao formação){
 		return listaDisciplinas.stream()
-				.filter(a -> a.getNomeDisciplina().equals(listaDisciplinas))
+				.filter(d -> d.getProfessor().getFormação().equals(formação))
 				.toList();
 		
 	}
+	
 	
 }
