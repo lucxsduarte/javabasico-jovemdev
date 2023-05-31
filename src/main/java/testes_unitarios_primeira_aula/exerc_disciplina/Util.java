@@ -1,9 +1,7 @@
 package testes_unitarios_primeira_aula.exerc_disciplina;
 
-import java.lang.invoke.LambdaConversionException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class Util {
 
@@ -50,12 +48,28 @@ public class Util {
 		return listaAlunos;
 	}
 	
+	public static void escolherDisciplinas(List<Disciplinas> disciplinas, Alunos aluno,List<Disciplinas> disciplinasEscolhidas) {
+			for (Disciplinas disciplina : disciplinasEscolhidas) {
+				if (disciplinas.contains(disciplina)) {
+					aluno.listDisciplinas().add(disciplina);
+				}
+			}
+	}
+	
 	public List<Disciplinas> listarPorProfessor(EnumFormacao formação){
 		return listaDisciplinas.stream()
 				.filter(d -> d.getProfessor().getFormação().equals(formação))
 				.toList();
-		
 	}
 	
+	public static void informarNotasAluno(Alunos aluno, Disciplinas disciplina, List<Double> notas) {
+		aluno.getNotas().put(disciplina, notas);
+	}
+	
+	public static List<String> listarDisciplinasMedia(Alunos aluno) {
+		List<String> disciplinasMedia = new ArrayList<>();
+
+		return disciplinasMedia;
+	}
 	
 }

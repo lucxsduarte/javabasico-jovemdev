@@ -3,16 +3,13 @@ package testes_unitarios_primeira_aula.exerc_medicamentos.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
-import testes_unitarios_primeira_aula.exerc_medicamentos.EnumAdm;
+import lombok.RequiredArgsConstructor;
+import testes_unitarios_primeira_aula.exerc_medicamentos.enums.EnumAdm;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Medicamento {
 	
 	@NonNull

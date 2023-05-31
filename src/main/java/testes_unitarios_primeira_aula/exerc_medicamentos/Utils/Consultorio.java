@@ -12,11 +12,6 @@ public class Consultorio {
 	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
-	public Medicamento add (Medicamento m) {
-		medicamentos.add(m);
-		return m;
-	}
-	
 	void cadastraMedicamento(Medicamento m) {
 		medicamentos.add(m);
 	}
@@ -35,7 +30,7 @@ public class Consultorio {
 	
 	void prescreveMedicamento(Pessoa p, Medicamento m) {
 		if(existeMedicamento(m) && existePessoa(p)) {
-		p.addMedicamento(m);
+			p.addMedicamento(m);
 		}
 	}
 }

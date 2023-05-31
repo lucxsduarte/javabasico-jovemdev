@@ -43,10 +43,5 @@ public class Alunostest {
 		assertEquals("História", disciplinas.get(0).getNomeDisciplina());
 	}
 	
-	@Test
-	@DisplayName("Testa notas do aluno")
-	void testInformaNotas() {
-		List<Disciplinas> disciplinas = aluno.listDisciplinas();
-		aluno.informaNotas(disciplina);
-	}
+
 }
