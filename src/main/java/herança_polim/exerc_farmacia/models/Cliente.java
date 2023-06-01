@@ -14,6 +14,7 @@ public class Cliente {
 	}
 	
 	public void retiraDivida(double valor) {
+		if (valor > 0 && valor <= saldoDevedor)
 		saldoDevedor -= valor;
 	}
 }

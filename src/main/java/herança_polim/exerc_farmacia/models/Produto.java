@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class Produto {
-	protected String nome;
+	private String nome;
 	protected int estoque;
 	protected double preço;
 	
