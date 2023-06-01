@@ -6,12 +6,12 @@ public class ContaEspecial extends Conta{
 	private double limite;
 	
 	@Override
-	public void sacar(double quantidade) {
-		
+	public boolean sacar(double quantidade) {
 		if (quantidade <= (saldo + limite)) {
-			saldo -= quantidade;
-			//quanto sobra limite
+			saldo = getSaldo() - quantidade;
+			return true;
 		}
+		return false;
 	}
 
 	public ContaEspecial(int numero, int agencia, String nome, double saldo, double limite) {

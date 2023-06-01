@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import herança_polim.exerc_farmacia.models.Cliente;
-import herança_polim.exerc_farmacia.models.EquipamentosMedicos;
-import herança_polim.exerc_farmacia.models.Medicamento;
-import herança_polim.exerc_farmacia.models.Perfumaria;
 import herança_polim.exerc_farmacia.models.Produto;
 import lombok.Getter;
 

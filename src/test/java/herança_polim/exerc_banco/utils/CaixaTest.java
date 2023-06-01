@@ -37,24 +37,38 @@ public class CaixaTest {
 	}
 
 	@Test
-	@DisplayName("Testa depósito conta corrente")
+	@DisplayName("Testa depósito")
 	void testaDeposito() {
-		caixa.fazDepósito(caixa.contas.get(0), 500);
+		caixa.fazDeposito(500, caixa.contas.get(0));
 		assertEquals(6000, caixa.contas.get(0).getSaldo());
+	}
+	
+	@Test
+	@DisplayName("Testa depósito sem valor")
+	void testaDepositoSemValor() {
+		caixa.fazDeposito(0, caixa.contas.get(0));
+		assertEquals(5500, caixa.contas.get(0).getSaldo());
 	}
 
 	@Test
 	@DisplayName("Testa depósito conta universitaria")
 	void testaDepositoUniversitaria() {
-		caixa.fazDepósito(caixa.contas.get(2), 700);
+		caixa.fazDeposito(700, caixa.contas.get(2));
 		assertEquals(1400, caixa.contas.get(2).getSaldo());
 	}
 
 	@Test
 	@DisplayName("Testa saque conta corrente")
 	void testaSaque() {
-		caixa.fazSaque(caixa.contas.get(0), 500);
+		caixa.fazSaque(500, caixa.contas.get(0));
 		assertEquals(5000, caixa.contas.get(0).getSaldo());
+	}
+	
+	@Test
+	@DisplayName("Testa saque valor maior que saldo")
+	void testaSaqueValorMaiorSaldo() {
+		caixa.fazSaque(6000, caixa.contas.get(0));
+		assertEquals(5500, caixa.contas.get(0).getSaldo());
 	}
 
 	@Test
@@ -62,8 +76,18 @@ public class CaixaTest {
 	void testaSaqueEspecial() {
 		if (caixa.contas.get(1) instanceof ContaEspecial) {
 			Conta c = (ContaEspecial) caixa.getContas().get(1);
-			caixa.fazSaque(c, 1900);
+			caixa.fazSaque(1900, c);
 			assertEquals(-400, caixa.contas.get(1).getSaldo());
+		}
+	}
+	
+	@Test
+	@DisplayName("Testa saque conta especial mais limite impossivel")
+	void testaSaqueEspecialMaisLimiteImpossivel() {
+		if (caixa.contas.get(1) instanceof ContaEspecial) {
+			Conta c = (ContaEspecial) caixa.getContas().get(1);
+			caixa.fazSaque(2100, c);
+			assertEquals(1500, caixa.contas.get(1).getSaldo());
 		}
 	}
 
@@ -73,7 +97,7 @@ public class CaixaTest {
 		Conta contaOrigem = caixa.contas.get(0);
 		Conta contaDestino = caixa.contas.get(3);
 
-		caixa.fazTransferencia(contaOrigem, contaDestino, 400);
+		caixa.fazTransferencia(400, contaOrigem, contaDestino);
 		assertEquals(5100, caixa.contas.get(0).getSaldo());
 		assertEquals(1690, caixa.contas.get(3).getSaldo());
 	}
@@ -84,7 +108,7 @@ public class CaixaTest {
 		Conta contaOrigem = caixa.contas.get(0);
 		Conta contaDestino = caixa.contas.get(2);
 		
-		caixa.fazTransferencia(contaOrigem, contaDestino, 700);
+		caixa.fazTransferencia(700, contaOrigem, contaDestino);
 		assertEquals(5500, caixa.contas.get(0).getSaldo());
 		assertEquals(1400, caixa.contas.get(2).getSaldo());
 	}
@@ -95,7 +119,7 @@ public class CaixaTest {
 		Conta contaOrigem = caixa.contas.get(1);
 		Conta contaDestino = caixa.contas.get(2);
 		
-		caixa.fazTransferencia(contaOrigem, contaDestino, 400);
+		caixa.fazTransferencia(400, contaOrigem, contaDestino);
 		assertEquals(1100, caixa.contas.get(1).getSaldo());
 		assertEquals(1800, caixa.contas.get(2).getSaldo());
 	}
@@ -106,9 +130,30 @@ public class CaixaTest {
 		Conta contaOrigem = caixa.contas.get(2);
 		Conta contaDestino = caixa.contas.get(1);
 
-		caixa.fazTransferencia(contaOrigem, contaDestino, 1400);
+		caixa.fazTransferencia(1400, contaOrigem, contaDestino);
 		assertEquals(0, caixa.contas.get(2).getSaldo());
 		assertEquals(2900, caixa.contas.get(1).getSaldo());
 	}
 	
+	@Test
+	@DisplayName("Testa transferencia para Universitaria impossível")
+	void testaTransfParaUniversitariaImpossivel() {
+		Conta contaOrigem = caixa.contas.get(0);
+		Conta contaDestino = caixa.contas.get(2);
+
+		caixa.fazTransferencia(700, contaOrigem, contaDestino);
+		assertEquals(5500, caixa.contas.get(0).getSaldo());
+		assertEquals(1400, caixa.contas.get(2).getSaldo());
+	}
+	
+	@Test
+	@DisplayName("Testa transferencia impossivel")
+	void testaTransfImpossivel() {
+		Conta contaOrigem = caixa.contas.get(1);
+		Conta contaDestino = caixa.contas.get(3);
+
+		caixa.fazTransferencia(2100, contaOrigem, contaDestino);
+		assertEquals(1500, caixa.contas.get(1).getSaldo());
+		assertEquals(1290, caixa.contas.get(3).getSaldo());
+	}
 }

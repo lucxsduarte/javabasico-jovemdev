@@ -2,7 +2,6 @@ package herança_polim.exerc_banco.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
@@ -13,21 +12,31 @@ public class Conta {
 	protected double saldo;
 	
 	
-	public void depositar(double quantidade) { 
-		this.saldo += quantidade;
-		
+	public boolean depositar(double quantidade) { 
+		if(quantidade > 0) {
+			saldo = getSaldo() + quantidade;
+			return true;
+		} 
+		return false;
 	}
 	
-	public void sacar(double quantidade) {
-		if(saldo >= quantidade && saldo > 0) {
-			this.saldo -= quantidade;
-		} else {
-			this.saldo = getSaldo();
+	public boolean sacar(double quantidade) {
+		if(quantidade <= saldo) {
+			saldo = getSaldo() - quantidade;
+			return true;
 		}
-		
+		return false;
 	}
 	
-	public boolean transferir(double quantidade) {
-		return quantidade <= saldo;
+	public boolean transferir(double quantidade, Conta contaDestino) {
+		if(sacar(quantidade)) {
+			if(contaDestino.depositar(quantidade)) {
+				return true;
+			}else {
+				depositar(quantidade);
+				return false;
+			}
+		}
+		return false;
 	}
 }

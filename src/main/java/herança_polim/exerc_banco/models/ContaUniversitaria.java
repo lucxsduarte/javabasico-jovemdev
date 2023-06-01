@@ -6,13 +6,12 @@ import lombok.Getter;
 public class ContaUniversitaria extends Conta{
 	
 	@Override
-	public void depositar(double quantidade) { 
+	public boolean depositar(double quantidade) { 
 	
 		if (saldo + quantidade <= 2000) {
-			saldo += quantidade;
-		}else {
-			saldo = getSaldo();
+			return super.depositar(quantidade);
 		}
+		return false;
 	}
 	
 	
