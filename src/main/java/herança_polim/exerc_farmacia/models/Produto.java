@@ -10,12 +10,12 @@ public class Produto {
 	protected int estoque;
 	protected double preço;
 	
-	public boolean emEstoque(int quantidade) {
-		return estoque >= quantidade;
+	public boolean foiVendido(Produto produto, Cliente cliente, int quantidade) {
+		if(estoque >= quantidade) {
+			estoque -= quantidade;
+			cliente.adicionaDivida(produto.getPreço() * quantidade);
+			return true;
+		}
+		return false;
 	}
-	
-	public void removeEstoque(int quantidade) {
-		estoque -= quantidade;
-	}
-	
 }

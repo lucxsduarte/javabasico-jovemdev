@@ -1,8 +1,6 @@
 package herança_polim.exerc_farmacia.models;
 
-import lombok.Getter;
 
-@Getter
 public class Medicamento extends Produto{
 	boolean reterReceita;
 	
@@ -13,5 +11,25 @@ public class Medicamento extends Produto{
 	
 	public boolean reterReceita() {
 		return reterReceita;
+	}
+	
+	@Override
+	public boolean foiVendido(Produto produto, Cliente cliente, int quantidade) {
+		if(estoque >= quantidade) {
+			if( produto instanceof Medicamento) {
+				if(((Medicamento) produto).reterReceita()) {
+					String ret = "Nome Médico?";
+					estoque -= quantidade;
+					cliente.adicionaDivida(produto.getPreço() * quantidade);
+					System.out.println(ret);
+					return true;
+				}else {
+					estoque -= quantidade;
+					cliente.adicionaDivida(produto.getPreço() * quantidade);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

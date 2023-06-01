@@ -9,4 +9,13 @@ public class EquipamentosMedicos extends Produto{
 		super(nome, estoque, preço);
 	}
 
+	@Override
+	public boolean foiVendido(Produto produto, Cliente cliente, int quantidade) {
+		if(produto instanceof EquipamentosMedicos) {
+			estoque -= quantidade;
+			cliente.adicionaDivida(produto.getPreço() * quantidade);
+			return true;
+		}
+		return false;
+	}
 }
