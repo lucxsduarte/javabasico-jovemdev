@@ -8,6 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import testes_unitarios_primeira_aula.exerc_disciplina.enums.EnumFormacao;
+import testes_unitarios_primeira_aula.exerc_disciplina.models.Alunos;
+import testes_unitarios_primeira_aula.exerc_disciplina.models.Disciplinas;
+import testes_unitarios_primeira_aula.exerc_disciplina.models.Professor;
+import testes_unitarios_primeira_aula.exerc_disciplina.utils.Util;
+
 public class Utiltest {
 
 	private Util bd = new Util();

@@ -1,4 +1,4 @@
-package testes_unitarios_primeira_aula.exerc_disciplina;
+package testes_unitarios_primeira_aula.exerc_disciplina.models;
 
 import java.util.Random;
 
