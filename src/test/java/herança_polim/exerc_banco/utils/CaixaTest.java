@@ -156,4 +156,16 @@ public class CaixaTest {
 		assertEquals(1500, caixa.contas.get(1).getSaldo());
 		assertEquals(1290, caixa.contas.get(3).getSaldo());
 	}
+	
+	@Test
+	@DisplayName("Testa transferencia entre conta corrente e conta Uni ok")
+	void testaTransfCorrenteUni() {
+		Conta contaOrigem = caixa.getContas().get(0);
+		Conta contaDestino = caixa.getContas().get(2);
+		
+		caixa.fazTransferencia(100, contaOrigem, contaDestino);
+		assertEquals(5400, caixa.getContas().get(0).getSaldo());
+		assertEquals(1500, caixa.getContas().get(2).getSaldo());
+	}
+	
 }
