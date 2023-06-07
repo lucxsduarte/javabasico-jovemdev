@@ -107,7 +107,7 @@ inner join cargo on cargo.id = vi.cargo
 
 --16
 select 
-	sum(brancos + nulos) 
+	sum(brancos + nulos) as votos_invalidos
 from 
 	voto_invalido 
 inner join 
@@ -117,8 +117,6 @@ inner join
 	and 
 	cidade.nome = 'TUBARÃO' 
 inner join cargo on cargo.id = voto_invalido.cargo and cargo.nome = 'Prefeito';
---4.797
-
 
 --17
 select candidato.nome, voto.voto, cidade.nome from candidato 
@@ -126,7 +124,6 @@ inner join voto on voto.candidato = candidato.id
 inner join cidade on cidade.id = candidato.cidade and cidade.nome = 'TUBARÃO'
 inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
 order by voto.voto desc;
---52.045
 
 --18
 select candidato.nome, voto.voto, cidade.nome from candidato 
@@ -151,40 +148,70 @@ group by partido.sigla
 order by votos desc;
 
 --21
-select candidato.cargo, sum(voto.voto) + sum(brancos + nulos) from voto
-inner join candidato on candidato.id = voto.candidato 
-inner join voto_invalido on voto_invalido.cidade = candidato.cidade
-inner join cidade on candidato.cidade = cidade.id and cidade.nome = 'TUBARÃO'
-inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
-group by candidato.cargo;
-
+select
+  candidato.cidade as cidade,
+  sum(voto.voto),
+  (select sum(brancos + nulos) from voto_invalido where voto_invalido.cidade = candidato.cidade and voto_invalido.cargo = 1),
+  sum(voto.voto) + (select sum(brancos + nulos) from voto_invalido where voto_invalido.cidade = candidato.cidade and voto_invalido.cargo = 1) as total
+from
+  candidato
+inner join partido on partido.id = candidato.partido
+inner join cargo on cargo.id = candidato.cargo
+inner join cidade on cidade.id = candidato.cidade
+inner join voto on voto.candidato = candidato.id
+where
+  cidade.nome = 'TUBARÃO'
+and
+  cargo.nome = 'Prefeito'
+group by
+  candidato.cidade;
 
 --22
-select count(candidato.partido) from candidato
-inner join partido on candidato.partido = partido.id and partido.id = 1;
+select 
+	cidade.nome, sum(voto.voto) + (select sum(brancos + nulos) from voto_invalido where voto_invalido.cidade = 274 and voto_invalido.cargo = 1)  - cidade.qt_eleitores as total
+from
+	candidato
+inner join cidade on cidade.id = candidato.cidade
+inner join partido on partido.id = candidato.partido
+inner join cargo on cargo.id = candidato.cargo
+inner join voto on voto.candidato = candidato.id
+where 
+	cidade.nome = 'TUBARÃO'
+group by 
+	cidade.nome, cidade.qt_eleitores;
 
-select sum(voto.voto) from candidato
-inner join partido on candidato.partido = partido.id 
+--23
+select 
+	cidade.nome, sum(voto.voto) + (select sum(brancos + nulos) from voto_invalido where voto_invalido.cidade = 274 and voto_invalido.cargo = 1)  - cidade.qt_eleitores as total
+from
+	candidato
+inner join cidade on cidade.id = candidato.cidade
+inner join partido on partido.id = candidato.partido
+inner join cargo on cargo.id = candidato.cargo
+inner join voto on voto.candidato = candidato.id
+group by cidade.nome, cidade.qt_eleitores
+order by total desc;
 
+--24
+select 
+	cidade.nome, sum(voto.voto) + (select sum(brancos + nulos) from voto_invalido where voto_invalido.cidade = 274 and voto_invalido.cargo = 1)  - cidade.qt_eleitores as total
+from
+	candidato
+inner join cidade on cidade.id = candidato.cidade
+inner join partido on partido.id = candidato.partido
+inner join cargo on cargo.id = candidato.cargo
+inner join voto on voto.candidato = candidato.id
+group by cidade.nome, cidade.qt_eleitores
+order by total desc;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--25 
+select 
+	cidade.nome, candidato.nome, sum(voto.voto) as mais_votos 
+from 
+	candidato
+inner join cidade on cidade.id = candidato.cidade 
+inner join voto on voto.candidato = candidato.id 
+group by candidato.nome, cidade.nome
+order by mais_votos desc;
 
 
